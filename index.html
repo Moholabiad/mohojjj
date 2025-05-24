@@ -1,16 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
-  <title>Stirling PDF</title>
-  <style>
-    iframe {
-      width: 100%;
-      height: 100vh;
-      border: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحويل رابط URL إلى PDF</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            direction: rtl;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        input[type="text"] {
+            margin: 10px 0;
+            padding: 8px;
+            width: 100%;
+            max-width: 300px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #result {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-  <iframe src="https://neat-baboons-push.loca.lt/?lang=en_US"></iframe>
+    <div class="container">
+        <h2>تحويل رابط URL إلى PDF</h2>
+        <form id="urlForm">
+            <input type="text" id="urlInput" placeholder="أدخل الرابط (مثل https://example.com)" required>
+            <br>
+            <button type="submit">تحويل إلى PDF</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('urlForm');
+        const urlInput = document.getElementById('urlInput');
+        const resultDiv = document.getElementById('result');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const url = urlInput.value;
+            if (!url) {
+                resultDiv.innerHTML = 'يرجى إدخال رابط URL!';
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('urlInput', url);
+
+            try {
+                resultDiv.innerHTML = 'جاري التحويل...';
+                const response = await fetch('http://84.247.162.136:8080/api/v1/convert/url/pdf', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error('فشل التحويل: ' + response.statusText);
+                }
+
+                const blob = await response.blob();
+                const downloadUrl = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = downloadUrl;
+                a.download = 'converted_from_url.pdf';
+                a.click();
+                window.URL.revokeObjectURL(downloadUrl);
+
+                resultDiv.innerHTML = 'تم التحويل بنجاح!';
+            } catch (error) {
+                resultDiv.innerHTML = خطأ: ${error.message};
+            }
+        });
+    </script>
 </body>
 </html>
