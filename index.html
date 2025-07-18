@@ -3,81 +3,128 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>عطر الفخامة الرجالي</title>
+  <title>غسول الوجه الطبيعي</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f9f9f9;
       margin: 0;
-      padding: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #f2f2f7;
       color: #333;
     }
     .container {
-      max-width: 600px;
+      max-width: 500px;
       margin: auto;
       padding: 20px;
     }
-    .product-image {
+    .product-img {
       width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
     }
     h1 {
       text-align: center;
-      color: #007bff;
       margin-top: 20px;
+      font-size: 22px;
     }
-    .product-description {
+    .icons {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px 0;
       text-align: center;
-      margin: 15px 0;
+    }
+    .icons div {
+      background: white;
+      border-radius: 12px;
+      padding: 10px;
+      font-size: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      width: 30%;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .card h2 {
+      margin: 0;
       font-size: 18px;
     }
+    .stars {
+      color: #fbc02d;
+      margin: 5px 0;
+    }
+    .price {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    .card button {
+      background: #007aff;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      width: 100%;
+    }
     form {
-      background-color: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background: white;
       margin-top: 20px;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      display: none;
     }
     label {
-      display: block;
-      margin: 10px 0 5px;
       font-weight: bold;
+      margin: 10px 0 5px;
+      display: block;
     }
     input, select, textarea {
       width: 100%;
       padding: 10px;
+      border-radius: 8px;
       border: 1px solid #ccc;
-      border-radius: 6px;
       margin-bottom: 15px;
-      font-size: 16px;
+      font-size: 15px;
     }
-    button {
-      width: 100%;
-      background-color: #28a745;
+    textarea {
+      resize: vertical;
+    }
+    .submit-btn {
+      background: #28a745;
       color: white;
       border: none;
-      padding: 14px;
-      font-size: 18px;
-      border-radius: 6px;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
       cursor: pointer;
-    }
-    button:hover {
-      background-color: #218838;
-    }
-    @media (max-width: 600px) {
-      .product-description {
-        font-size: 16px;
-      }
+      width: 100%;
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <img src="https://images.unsplash.com/photo-1596920564036-6c4e8f00a17b" alt="عطر" class="product-image">
-  <h1>عطر الفخامة الرجالي</h1>
-  <p class="product-description">رائحة ساحرة تدوم طويلاً - اطلبه الآن والتوصيل مجاني لجميع ولايات الجزائر!</p>
+  <img class="product-img" src="https://images.unsplash.com/photo-1596920564036-6c4e8f00a17b" alt="منتج">
+
+  <h1>غسول الوجه الطبيعي</h1>
+
+  <div class="icons">
+    <div>طبيعي</div>
+    <div>نباتي</div>
+    <div>خالي من الكربون</div>
+  </div>
+
+  <div class="card">
+    <h2>غسول لطيف للبشرة</h2>
+    <div class="stars">★★★★★</div>
+    <div class="price">999 دج</div>
+    <button onclick="document.getElementById('order-form').style.display = 'block'; window.scrollTo(0, document.body.scrollHeight);">اطلب الآن</button>
+  </div>
 
   <form id="order-form">
     <label for="name">الاسم الكامل:</label>
@@ -93,34 +140,33 @@
     <select id="commune" required></select>
 
     <label for="address">العنوان الدقيق (اختياري):</label>
-    <textarea id="address" placeholder="مثلاً: حي السلام، رقم 12، قرب المسجد"></textarea>
+    <textarea id="address" placeholder="مثال: حي السلام، رقم 12، قرب المدرسة"></textarea>
 
-    <button type="submit">اطلب الآن</button>
+    <button type="submit" class="submit-btn">تأكيد الطلب</button>
   </form>
 </div>
 
 <script>
-  // بيانات أولية للولايات والبلديات (عينة فقط)
   const wilayasData = {
-    "الجزائر": ["باب الزوار", "الجزائر الوسطى", "بئر خادم"],
-    "وهران": ["السانية", "المرسى الكبير", "حي الصديقية"],
-    "سطيف": ["عين ولمان", "العلمة", "بوقاعة"]
+    "الجزائر": ["باب الزوار", "الحراش", "بئر مراد رايس"],
+    "وهران": ["السانية", "المرسى الكبير", "بئر الجير"],
+    "سطيف": ["العلمة", "عين ولمان", "سطيف"]
   };
 
   const wilayaSelect = document.getElementById("wilaya");
   const communeSelect = document.getElementById("commune");
 
   // تحميل الولايات
-  for (let wilaya in wilayasData) {
-    let option = document.createElement("option");
-    option.value = wilaya;
-    option.textContent = wilaya;
-    wilayaSelect.appendChild(option);
-  }
+  Object.keys(wilayasData).forEach(w => {
+    const opt = document.createElement("option");
+    opt.value = w;
+    opt.textContent = w;
+    wilayaSelect.appendChild(opt);
+  });
 
-  // عند تغيير الولاية، حمّل البلديات التابعة لها
+  // تحديث البلديات عند اختيار ولاية
   wilayaSelect.addEventListener("change", () => {
-    const communes = wilayasData[wilayaSelect.value];
+    const communes = wilayasData[wilayaSelect.value] || [];
     communeSelect.innerHTML = "";
     communes.forEach(c => {
       const opt = document.createElement("option");
@@ -130,11 +176,11 @@
     });
   });
 
-  // تهيئة أول ولاية عند التحميل
+  // تهيئة أول ولاية
   wilayaSelect.value = Object.keys(wilayasData)[0];
   wilayaSelect.dispatchEvent(new Event("change"));
 
-  // عند إرسال النموذج
+  // إرسال الطلب
   document.getElementById("order-form").addEventListener("submit", function(e) {
     e.preventDefault();
 
@@ -146,22 +192,24 @@
 
     const botToken = "8046263011:AAHorMJl4j11A05nr3JSRJgt2zyr323WnZs";
     const chatId = "-1002605627772";
-      const message =`*طلب جديد!*\n\n*الاسم:* ${name}\n*الهاتف:* ${phone}\n*الولاية:* ${wilaya}\n*البلدية:* ${commune}\n*العنوان:* ${address || '---'}`;
+
+    const message =`*طلب جديد!*\n\n*الاسم:* ${name}\n*الهاتف:* ${phone}\n*الولاية:* ${wilaya}\n*البلدية:* ${commune}\n*العنوان:* ${address || '---'}`;
 
     const url =`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=Markdown`;
 
     fetch(url)
       .then(res => {
         if (res.ok) {
-          alert("تم إرسال الطلب بنجاح!");
+          alert("✅ تم إرسال طلبك بنجاح!");
           this.reset();
+          document.getElementById('order-form').style.display = 'none';
           wilayaSelect.dispatchEvent(new Event("change"));
         } else {
-          alert("فشل إرسال الطلب. حاول مرة أخرى.");
+          alert("❌ فشل إرسال الطلب. حاول مجددًا.");
         }
       })
       .catch(err => {
-        alert("تعذر الاتصال. تحقق من الإنترنت.");
+        alert("❌ تعذر الاتصال. تأكد من الإنترنت.");
         console.error(err);
       });
   });
