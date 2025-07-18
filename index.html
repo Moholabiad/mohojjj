@@ -1,127 +1,170 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة طلب المنتج</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-            background-color: #f4f4f4;
-            color: #333;
-            text-align: right; /* لجعل النص يبدأ من اليمين */
-        }
-        h1 {
-            color: #0056b3;
-            text-align: center;
-        }
-        form {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            margin: 20px auto;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-        input[type="text"],
-        textarea {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 18px;
-            width: 100%;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>عطر الفخامة الرجالي</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+    }
+    .product-image {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #007bff;
+      margin-top: 20px;
+    }
+    .product-description {
+      text-align: center;
+      margin: 15px 0;
+      font-size: 18px;
+    }
+    form {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 18px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    @media (max-width: 600px) {
+      .product-description {
+        font-size: 16px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>اطلب منتجك الآن</h1>
 
-    <form id="order-form">
-        <label for="name">الاسم كاملاً:</label>
-        <input type="text" id="name" name="name" required>
+<div class="container">
+  <img src="https://images.unsplash.com/photo-1596920564036-6c4e8f00a17b" alt="عطر" class="product-image">
+  <h1>عطر الفخامة الرجالي</h1>
+  <p class="product-description">رائحة ساحرة تدوم طويلاً - اطلبه الآن والتوصيل مجاني لجميع ولايات الجزائر!</p>
 
-        <label for="phone">رقم الهاتف:</label>
-        <input type="text" id="phone" name="phone" required>
+  <form id="order-form">
+    <label for="name">الاسم الكامل:</label>
+    <input type="text" id="name" required>
 
-        <label for="address">العنوان كاملاً (الشارع، المدينة، الولاية):</label>
-        <textarea id="address" name="address" required></textarea>
+    <label for="phone">رقم الهاتف:</label>
+    <input type="text" id="phone" required>
 
-        <button type="submit">اطلب الآن</button>
-    </form>
+    <label for="wilaya">الولاية:</label>
+    <select id="wilaya" required></select>
 
-    <script>
-        // احصل على مرجع لنموذج الطلب
-        const orderForm = document.getElementById('order-form');
+    <label for="commune">البلدية:</label>
+    <select id="commune" required></select>
 
-        // استمع لحدث إرسال النموذج (عندما يضغط المستخدم على زر "اطلب الآن")
-        orderForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // منع الإرسال الافتراضي للصفحة لتجنب إعادة التحميل
+    <label for="address">العنوان الدقيق (اختياري):</label>
+    <textarea id="address" placeholder="مثلاً: حي السلام، رقم 12، قرب المسجد"></textarea>
 
-            // جمع البيانات من حقول النموذج
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
+    <button type="submit">اطلب الآن</button>
+  </form>
+</div>
 
-            // مهم جداً:
-            // استبدل 'YOUR_TELEGRAM_BOT_TOKEN' برمز الروبوت الخاص بك من BotFather.
-            // استبدل 'YOUR_TELEGRAM_CHAT_ID' بمعرف الدردشة (ID) الخاص بالقناة أو المجموعة التي تريد إرسال الرسائل إليها.
-            // يمكنك الحصول على Chat ID عن طريق إرسال أي رسالة إلى الروبوت الخاص بك ثم زيارة:
-            // https://api.telegram.org/botYOUR_TELEGRAM_BOT_TOKEN/getUpdates
-            // وابحث عن "chat":{"id":...}
-            const botToken ='8046263011:AAHorMJl4j11A05nr3JSRJgt2zyr323WnZs'; 
-            const chatId ='-1002605627772'; 
+<script>
+  // بيانات أولية للولايات والبلديات (عينة فقط)
+  const wilayasData = {
+    "الجزائر": ["باب الزوار", "الجزائر الوسطى", "بئر خادم"],
+    "وهران": ["السانية", "المرسى الكبير", "حي الصديقية"],
+    "سطيف": ["عين ولمان", "العلمة", "بوقاعة"]
+  };
 
-            // قم بإنشاء رسالة واضحة تحتوي على تفاصيل الطلب
-            const messageText =`*طلب جديد!*\n\n*الاسم:* ${name}\n*رقم الهاتف:* ${phone}\n*العنوان:* ${address}`;
+  const wilayaSelect = document.getElementById("wilaya");
+  const communeSelect = document.getElementById("commune");
 
-            // بناء عنوان URL لإرسال الرسالة عبر Telegram Bot API
-            const telegramApiUrl =`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(messageText)}&parse_mode=Markdown`;
+  // تحميل الولايات
+  for (let wilaya in wilayasData) {
+    let option = document.createElement("option");
+    option.value = wilaya;
+    option.textContent = wilaya;
+    wilayaSelect.appendChild(option);
+  }
 
-            // إرسال طلب HTTP (Fetch API) إلى Telegram API
-            fetch(telegramApiUrl)
-                .then(response => {
-                    // تحقق مما إذا كان الطلب قد تم بنجاح (الحالة 200 OK)
-if (response.ok) {
-                        alert('تم استلام طلبك بنجاح! سنتواصل معك قريباً.');
-                        orderForm.reset(); // مسح حقول النموذج بعد الإرسال الناجح
-                    } else {
-                        // في حالة وجود خطأ، أظهر رسالة للمستخدم
-                        alert('حدث خطأ أثناء إرسال طلبك. يرجى المحاولة مرة أخرى.');
-                        console.error('Telegram API Error:', response.statusText); // لعرض الخطأ في Console للمطور
-                    }
-                })
-                .catch(error => {
-                    // في حالة وجود مشكلة في الاتصال بالشبكة
-                    alert('لا يمكن الاتصال بالخادم. يرجى التحقق من اتصالك بالإنترنت.');
-                    console.error('Network Error:', error);
-                });
-        });
-    </script>
+  // عند تغيير الولاية، حمّل البلديات التابعة لها
+  wilayaSelect.addEventListener("change", () => {
+    const communes = wilayasData[wilayaSelect.value];
+    communeSelect.innerHTML = "";
+    communes.forEach(c => {
+      const opt = document.createElement("option");
+      opt.value = c;
+      opt.textContent = c;
+      communeSelect.appendChild(opt);
+    });
+  });
+
+  // تهيئة أول ولاية عند التحميل
+  wilayaSelect.value = Object.keys(wilayasData)[0];
+  wilayaSelect.dispatchEvent(new Event("change"));
+
+  // عند إرسال النموذج
+  document.getElementById("order-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const wilaya = wilayaSelect.value;
+    const commune = communeSelect.value;
+    const address = document.getElementById("address").value;
+
+    const botToken = "8046263011:AAHorMJl4j11A05nr3JSRJgt2zyr323WnZs";
+    const chatId = "-1002605627772";
+      const message =`*طلب جديد!*\n\n*الاسم:* ${name}\n*الهاتف:* ${phone}\n*الولاية:* ${wilaya}\n*البلدية:* ${commune}\n*العنوان:* ${address || '---'}`;
+
+    const url =`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=Markdown`;
+
+    fetch(url)
+      .then(res => {
+        if (res.ok) {
+          alert("تم إرسال الطلب بنجاح!");
+          this.reset();
+          wilayaSelect.dispatchEvent(new Event("change"));
+        } else {
+          alert("فشل إرسال الطلب. حاول مرة أخرى.");
+        }
+      })
+      .catch(err => {
+        alert("تعذر الاتصال. تحقق من الإنترنت.");
+        console.error(err);
+      });
+  });
+</script>
 </body>
 </html>
-                      
