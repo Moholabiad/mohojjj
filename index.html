@@ -93,14 +93,14 @@
             // يمكنك الحصول على Chat ID عن طريق إرسال أي رسالة إلى الروبوت الخاص بك ثم زيارة:
             // https://api.telegram.org/botYOUR_TELEGRAM_BOT_TOKEN/getUpdates
             // وابحث عن "chat":{"id":...}
-            const botToken = '8046263011:AAHorMJl4j11A05nr3JSRJgt2zyr323WnZs'; 
-            const chatId = '-1002605627772'; 
+            const botToken ='8046263011:AAHorMJl4j11A05nr3JSRJgt2zyr323WnZs'; 
+            const chatId ='-1002605627772'; 
 
             // قم بإنشاء رسالة واضحة تحتوي على تفاصيل الطلب
-            const messageText = *طلب جديد!*\n\n*الاسم:* ${name}\n*رقم الهاتف:* ${phone}\n*العنوان:* ${address};
+            const messageText =`*طلب جديد!*\n\n*الاسم:* ${name}\n*رقم الهاتف:* ${phone}\n*العنوان:* ${address}`;
 
             // بناء عنوان URL لإرسال الرسالة عبر Telegram Bot API
-            const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(messageText)}&parse_mode=Markdown`;
+            const telegramApiUrl =`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(messageText)}&parse_mode=Markdown`;
 
             // إرسال طلب HTTP (Fetch API) إلى Telegram API
             fetch(telegramApiUrl)
