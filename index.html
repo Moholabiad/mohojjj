@@ -100,7 +100,7 @@
             const messageText = *طلب جديد!*\n\n*الاسم:* ${name}\n*رقم الهاتف:* ${phone}\n*العنوان:* ${address};
 
             // بناء عنوان URL لإرسال الرسالة عبر Telegram Bot API
-            const telegramApiUrl = https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(messageText)}&parse_mode=Markdown;
+            const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(messageText)}&parse_mode=Markdown`;
 
             // إرسال طلب HTTP (Fetch API) إلى Telegram API
             fetch(telegramApiUrl)
